@@ -5,27 +5,112 @@
   <title>Redirecting...</title>
   <script>
     window.onload = function () {
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      if (/android/i.test(userAgent)) {
-        window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68776";
-      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68777";
-      } else {
-        // Desktop user - no redirect
+      function getDeviceType() {
+        var ua = navigator.userAgent;
+        if (/android/i.test(ua)) return "android";
+        if (/iPhone|iPad|iPod/i.test(ua)) return "ios";
+        return "desktop";
       }
+
+      var device = getDeviceType();
+
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          var countryCode = data.country_code;
+
+          // 👉 USA
+          if (countryCode === "US" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68777"; return;
+          }
+          if (countryCode === "US" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68776"; return;
+          }
+
+          // 👉 Malaysia
+          if (countryCode === "MY" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=70093"; return;
+          }
+          if (countryCode === "MY" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=70094"; return;
+          }
+
+          // 👉 Canada
+          if (countryCode === "CA" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=69339"; return;
+          }
+
+          // 👉 Germany
+          if (countryCode === "DE" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=70684"; return;
+          }
+          if (countryCode === "DE" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68865"; return;
+          }
+
+          // 👉 New Zealand
+          if (countryCode === "NZ" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=57975"; return;
+          }
+          if (countryCode === "NZ" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=57976"; return;
+          }
+
+          // 👉 France
+          if (countryCode === "FR" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68677"; return;
+          }
+
+          // 👉 Spain
+          if (countryCode === "ES" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=63692"; return;
+          }
+          if (countryCode === "ES" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=64912"; return;
+          }
+
+          // 👉 Italy
+          if (countryCode === "IT" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=41572"; return;
+          }
+          if (countryCode === "IT" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=54741"; return;
+          }
+
+          // 👉 Netherlands
+          if (countryCode === "NL" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68991"; return;
+          }
+          if (countryCode === "NL" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68378"; return;
+          }
+
+          // 👉 Belgium
+          if (countryCode === "BE" && device === "android") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=51674"; return;
+          }
+          if (countryCode === "BE" && device === "ios") {
+            window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=51675"; return;
+          }
+
+          // 🔻 Not matched
+          document.body.innerHTML = "<h2 style='color:red;'>❌ Sorry, no offer available for your country or device.</h2>";
+        })
+        .catch(error => {
+          document.body.innerHTML = "<h2 style='color:red;'>⚠️ Failed to detect location. Please try again.</h2>";
+        });
     };
   </script>
   <style>
-    body {
+    body {{
       font-family: sans-serif;
-      background-color: #f0f0f0;
       text-align: center;
       margin-top: 20%;
-    }
+      background: #f4f4f4;
+    }}
   </style>
 </head>
 <body>
-  <h2>🔁 Please wait... redirecting you to the app</h2>
+  <h2>🔁 Please wait... we are selecting the best offer for you</h2>
 </body>
 </html>
