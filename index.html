@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    window.onload = function () {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68776";
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://singingfiles.com/show.php?l=0&u=2419849&id=68777";
+      } else {
+        window.location.href = "https://google.com"; // fallback, optional
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin-top: 20%;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔁 Please wait... redirecting you to the app</h2>
+</body>
+</html>
